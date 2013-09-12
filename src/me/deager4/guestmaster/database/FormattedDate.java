@@ -1,5 +1,10 @@
 package me.deager4.guestmaster.database;
 
+/**
+ * Helps format dates for things
+ * @author deager4
+ *
+ */
 public class FormattedDate 
 {
 	private int day;

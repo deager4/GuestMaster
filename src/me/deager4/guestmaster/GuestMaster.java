@@ -16,22 +16,42 @@ import me.deager4.guestmaster.gui.OpenSplash;
  */
 public class GuestMaster
 {
+		/**
+		 * The {@link JFrame} for the program
+		 */
         private static  JFrame frame;
         
+        /**
+         * The {@link Database} for the program
+         */
         private static Database database;
         
+        
+        /**
+         * The {@link OpenSplash} for the GUI
+         */
         private static OpenSplash splash;
         
+        /**
+         * The {@link Mailer} for the program
+         */
         private static Mailer mailer;
         
+        /**
+         * The password to edit the database
+         */
         private static String password = "password";
         
         /**
-         * The {@link MainManu} for the program
+         * The {@link MainMenu} for the program
          */
         private static MainMenu menu;
         
-        private static String version = "1.0 Release Version";
+        
+        /**
+         * version text
+         */
+        private static String version = "1.0: Release Version";
         
         /**
          * 
@@ -55,7 +75,8 @@ public class GuestMaster
         }
         
         /**
-         * Opens the MainMenu for the program, a JPanel
+         * Opens the MainMenu for the program, a {@link JPanel}
+         * 
          */
         public static void openMainMenu()
         {
@@ -69,7 +90,7 @@ public class GuestMaster
         }
         
         /**
-         * 
+         * Public getter for {@link GuestMaster#version}
          * @return {@link GuestMaster#version}
          */
         public static String getVersion()
@@ -77,24 +98,35 @@ public class GuestMaster
         	return version;
         }
         
+        /**
+         * Public getter for {@link GuestMaster#password}
+         * @return {@link GuestMaster#password}
+         */
         public static String getPassword()
         {
         	return password;
         }
         
+        /**
+         * Public setter for {@link Guestmaster#password}
+         * @param input the new password formatted as a {@link String}
+         */
         public static void setPassword(String input)
         {
         	password = input;
         }
         
-        
+        /**
+         * Public getter for {@link GuestMaster#mailer}
+         * @return {@link GuestMaster#mailer}
+         */
         public static Mailer getMailer()
         {
         	return mailer;
         }
         
         /**
-         * 
+         * Public getter for the {@link GuestMaster#menu}
          * @return {@link GuestMaster#menu}
          */
         public static MainMenu getMainMenu()
@@ -103,7 +135,7 @@ public class GuestMaster
         }
         
         /**
-         * 
+         * Public getter for {@link GuestMaster#frame}
          * @return {@link GuestMaster#frame}
          */
         public static JFrame getFrame()
@@ -112,7 +144,7 @@ public class GuestMaster
         }
         
         /**
-         * 
+         * Public getter for {@link GuestMaster#database}
          * @return {@link GuestMaster#database}
          */
         public static Database getDatabase()
@@ -121,14 +153,12 @@ public class GuestMaster
         }
         
         /**
-         * 
+         * Main Method
          * @param args
          * @throws IOException
          */
         public static void main(String args[]) throws IOException
         {
         	createAndShowGui();
-        	
-        	
         }
 }

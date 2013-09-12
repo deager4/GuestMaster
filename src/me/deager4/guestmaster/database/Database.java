@@ -16,22 +16,51 @@ import java.util.StringTokenizer;
 
 import me.deager4.guestmaster.GuestMaster;
 
-
+/**
+ * The Database for the entire program. Handles pretty much everything.
+ * 
+ * In a future update, I want to change how the lists are stored, as right now they are really obfuscated.
+ * @author deager4
+ *
+ */
 public class Database 
 {
+	/**
+	 * An {@link ArrayList} that stores all {@link Guest}s in the database
+	 */
 	private ArrayList<Guest> guestList;
+	
+	/**
+	 * A {@link HashMap} that stores all of the {@Sponsor}s in the database
+	 */
 	private HashMap<String, Sponsor> sponsorList;
+	
+	/**
+	 * This class contains all {@link Guest}s and {@link Sponsor}s for the database, and is also responsible for writing the database to a file.
+	 */
 	public Database()
 	{
 		this.guestList = new ArrayList<Guest>();
 		this.sponsorList = new HashMap<String, Sponsor>();
 	}
 	
+	/**
+	 * Gets the number of entries in {@link Database#guestList}
+	 * @return {@link Database#guestList}
+	 */
 	public int getNumberInGuestList()
 	{
 		return guestList.size();
 	}
 	
+	/**
+	 * if an instances of {@link Guest} is stored in {@link Database#guestList}, and is identical to the param, this method returns that guest
+	 * 
+	 * note: this may sound really useless, but it is helpful when you are trying to make everything accessible from one class. it makes inheritance a lot e
+	 * 
+	 * @param guest {@link Guest}
+	 * @return {@link Guest}
+	 */
 	public Guest getGuest(Guest guest)
 	{
 		if(this.guestList.contains(guest))
@@ -53,14 +82,20 @@ public class Database
 		guestList.add(guest);
 	}
 	
+	/**
+	 * Does pretty much what it says. It sets all indices of {@link Database#guestList} to null
+	 */
 	public void clearGuests()
 	{
 		this.guestList.clear();
 	}
 	
 	/**
-	 * exports the database in a .gmf format
+	 * exports the database in a .gmf format 
+	 * @note (read "gmf README.txt" for more information on file format)
 	 * @throws IOException
+	 * 
+	 * @postScript I know this could have been done a lot easier with buffered writers etc, but I did not know about that at the time, and right now, I really don't feel like changing it. Feel free to though.
 	 */
 	public void exportDatabase() throws IOException
 	{
@@ -118,6 +153,13 @@ public class Database
 		writer.close();
 	}
 	
+	/**
+	 * backs up the database to an external .gmf file
+	 * @note (read "gmf README.txt" for more information on file format)
+	 * @throws IOException
+	 * 
+	 * @postScript I know this could have been done a lot easier with buffered writers etc, but I did not know about that at the time, and right now, I really don't feel like changing it. Feel free to though.
+	 */
 	public void backupDatabase(File file) throws IOException
 	{
 		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -174,8 +216,11 @@ public class Database
 	}
 	
 	/**
-	 * Imports the database, a .gmf file, allowing for persistence
+	 * imports the database in a .gmf format 
+	 * @note (read "gmf README.txt" for more information on file format)
 	 * @throws IOException
+	 * 
+	 * @postScript I know this could have been done a lot easier with buffered readers etc, but I did not know about that at the time, and right now, I really don't feel like changing it. Feel free to though.
 	 */
 	public void importDatabase() throws IOException
 	{
@@ -336,6 +381,13 @@ public class Database
 		}
 	}
 	
+	/**
+	 * imports the database in a .gmf format from another file other than the standard one
+	 * @note (read "gmf README.txt" for more information on file format)
+	 * @throws IOException
+	 * 
+	 * @postScript I know this could have been done a lot easier with buffered readers etc, but I did not know about that at the time, and right now, I really don't feel like changing it. Feel free to though.
+	 */
 	public void restoreDatabase(File file) throws IOException
 	{
 		BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -494,17 +546,36 @@ public class Database
 		
 	}
 	
+	/**
+	 * Adds a {@link Sponsor} to {@link Database#sponsorList}
+	 * @param name Name of the sponsor
+	 * @param sponsor the actual {@link Sponsor}
+	 * @throws IOException
+	 */
 	public void addSponsor(String name, Sponsor sponsor) throws IOException
 	{
 		sponsorList.put(name, sponsor);
 		this.exportDatabase();
 	}
 	
+	
+	/**
+	 * Public getter for {@link Database#sponsorList}
+	 * @return {@link Database#sponsorList}
+	 */
 	public HashMap<String, Sponsor> getSponsorList()
 	{
 		return sponsorList;
 	}
 	
+	/**
+	 * From the name of the sponsor, the guest's visit is added to that sponsor
+	 * 
+	 * @note kinda confusing I will admit, but really, I could not think of a better way to handle this. I was kinda pressed for time, as my clients added sponsor handling as a requirement at the last minute.
+	 * @param name
+	 * @param visit
+	 * @throws IOException
+	 */
 	public void addVisitToSponsorFromName(String name, SponsorVisit visit) throws IOException
 	{
 		for(int count = 0; count < sponsorList.size(); count ++)
@@ -516,6 +587,11 @@ public class Database
 		}
 	}
 	
+	/**
+	 * Returns the corresponding instance of {@link Guest} associated with the param, from {@link Database#guestList}
+	 * @param name
+	 * @return {@link Guest}
+	 */
 	public ArrayList<Guest> getGuestFromName(String name)
 	{
 		ArrayList<Guest> list = new ArrayList<Guest>();
@@ -533,6 +609,11 @@ public class Database
 		return list;
 	}
 	
+	
+	/**
+	 * removes an instance of {@link Guest} from {@link Database#guestList}
+	 * @param guest
+	 */
 	public void removeGuest(Guest guest)
 	{
 		guestList.remove(guest);
