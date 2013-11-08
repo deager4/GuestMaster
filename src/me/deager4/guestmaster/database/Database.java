@@ -54,7 +54,7 @@ public class Database
 	}
 	
 	/**
-	 * if an instances of {@link Guest} is stored in {@link Database#guestList}, and is identical to the param, this method returns that guest
+	 * if an instance of {@link Guest} is stored in {@link Database#guestList}, and is identical to the param, this method returns that guest
 	 * 
 	 * note: this may sound really useless, but it is helpful when you are trying to make everything accessible from one class. it makes inheritance a lot e
 	 * 
